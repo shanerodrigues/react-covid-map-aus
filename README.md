@@ -1,6 +1,6 @@
 # React Covid Map for Australia
 
-![COVID-19 Tracker Demo](./public/demo/demo.gif)
+![Covid React Map Demo](./public/demo/react-map.gif)
 
 This app provides an overview of COVID 19 Statistics for Australia regarding the number of confirmed and recovered cases as well as deaths for both Australia as a whole and for each individual state.
 
