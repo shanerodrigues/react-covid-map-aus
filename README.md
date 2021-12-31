@@ -1,3 +1,15 @@
+# React Covid Map for Australia
+
+This app provides an overview of COVID 19 Statistics for Australia regarding the number of confirmed and recovered cases as well as deaths for both Australia as a whole and for each individual state.
+
+There is also a choropleth map of Australia as a whole representing the number of confirmed cases each state has.
+
+Made using React and VS Code.
+
+Data from - [COVID19data.com.au](https://github.com/M3IT/COVID-19_Data).
+
+---
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
