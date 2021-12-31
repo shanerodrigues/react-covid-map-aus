@@ -3,37 +3,11 @@ import { MapContainer, GeoJSON, useMap } from "react-leaflet"
 import "leaflet/dist/leaflet.css"
 import "./CovidMap.css"
 import L from "leaflet"
-
-function SetWindowListeners() {
-  const map = useMap()
-  window.addEventListener("resize", () => {
-    let width = document.documentElement.clientWidth
-    let bar = document.getElementById("info-pane")
-    if (width < 768) {
-      map.setZoom(3.3)
-      bar.style.display = "none"
-    } else {
-      map.setZoom(4.4)
-      bar.style.display = "block"
-    }
-  })
-
-  window.addEventListener("DOMContentLoaded", () => {
-    let width = document.documentElement.clientWidth
-    let bar = document.getElementById("info-pane")
-    if (width < 768) {
-      map.setZoom(3.3)
-      bar.style.display = "none"
-    } else {
-      map.setZoom(4.4)
-      bar.style.display = "block"
-    }
-  })
-  return null
-}
+import { Media } from "js-media-query"
 
 const CovidMap = ({ country }) => {
   const [paneStats, setPaneStats] = useState("Hover to Inspect")
+
   const mapStyle = {
     fillColor: "#dbe2f0",
     fillOpacity: 1,
@@ -71,18 +45,18 @@ const CovidMap = ({ country }) => {
 
     let content = `
     <div style="text-align: center">
-    <p><b>${stateName}</b> 
-    \n 
+    <p><b>${stateName}</b>
+    \n
     <p style="font-weight: 300"> Confirmed:
-    <span style="color: orange; font-weight: 500">${confirmedText}</span>  
-    \n 
+    <span style="color: orange; font-weight: 500">${confirmedText}</span>
+    \n
     <p style="font-weight: 300"> Recovered:
-    <span style="color: green; font-weight: 500">${recoveredText} </span>  
-    
-    \n 
+    <span style="color: green; font-weight: 500">${recoveredText} </span>
+
+    \n
     <p style="font-weight: 300"> Deaths:
-    <span style="color: red; font-weight: 500">${deathsText}</span>  
-    
+    <span style="color: red; font-weight: 500">${deathsText}</span>
+
     </div>
     `
 
@@ -98,13 +72,43 @@ const CovidMap = ({ country }) => {
     })
     layer.bindPopup(content)
   }
+
+  function SetResizeListener() {
+    const map = useMap()
+    window.addEventListener("resize", () => {
+      let viewportWidth = window.innerWidth
+      let viewportHeight = window.innerHeight
+      if (viewportWidth < 768 && viewportHeight < 768) {
+        map.setZoom(3.25)
+      } else if (viewportWidth >= 768 && viewportWidth < 1024) {
+        map.setZoom(3.5)
+      } else {
+        map.setZoom(4.25)
+      }
+    })
+    return null
+  }
+
+  function SetInitialMapZoom() {
+    let map = useMap()
+    if (Media.min(768)) {
+      map.setZoom(4)
+    } else if (Media.min(480)) {
+      map.setZoom(3.5)
+    } else {
+      map.setZoom(3.3)
+    }
+    return null
+  }
+
   return (
     <div>
       <MapContainer
         center={[-28.734968, 134.489563]}
-        zoom={4.4}
+        zoom={4}
+        maxZoom={4}
         scrollWheelZoom={false}
-        maxZoom={4.4}
+        zoomSnap={0.1}
         zoomControl={false}
         interactive={false}
         dragging={false}
@@ -116,7 +120,8 @@ const CovidMap = ({ country }) => {
         ]}
       >
         <GeoJSON style={mapStyle} data={country} onEachFeature={onEachState} />
-        <SetWindowListeners />
+        <SetResizeListener />
+        <SetInitialMapZoom />
         <div id="info-pane" className="leaflet-bar">
           {paneStats}
         </div>

@@ -7,22 +7,8 @@ import Legend from "./Legend"
 import legendItems from "../entities/LegendItems"
 import Footer from "./Footer"
 import LoadStatesTask from "../tasks/LoadStatesTask"
-
-const Header = () => {
-  return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        marginTop: "1rem",
-        textAlign: "center",
-      }}
-    >
-      <h1>COVID 19 Statistics for Australia</h1>
-      <hr />
-    </div>
-  )
-}
+import GithubCorner from "react-github-corner"
+import Header from "./Header"
 
 const Main = () => {
   const [country, setCountry] = useState([])
@@ -51,6 +37,13 @@ const Main = () => {
       ) : (
         <div>
           <Header />
+          <GithubCorner
+            href={"https://github.com/shanerodrigues/react-covid-map-aus"}
+            bannerColor="#151513"
+            octoColor="#fff"
+            size={80}
+            direction="right"
+          />
           <NationalStats national={national} />
           <CovidMap country={country} />
           <Legend legendItems={legendItemsInReverse} />
