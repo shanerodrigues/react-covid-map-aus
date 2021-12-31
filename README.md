@@ -8,7 +8,7 @@ https://shanerodrigues.github.io/react-covid-map-aus/
 
 There is also a choropleth map of Australia as a whole representing the number of confirmed cases each state has.
 
-Made using React and VS Code.
+Made using React and LeafletJS.
 
 Data from - [COVID19data.com.au](https://github.com/M3IT/COVID-19_Data).
 
