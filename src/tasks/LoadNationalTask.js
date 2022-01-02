@@ -11,11 +11,13 @@ class LoadNationalTask {
     papa.parse(this.covid19DataUrl, {
       download: true,
       header: true,
-      complete: (res) => this.#meme(res.data),
+      complete: (res) => this.#processNationalData(res.data),
     })
   }
 
-  #meme = (nationalData) => {
+  #processNationalData = (nationalData) => {
+    // remove empty last element
+    // take data from last two entries
     nationalData.pop()
     let currentNationalCovidInfo = nationalData.slice(
       nationalData.length - 2,
