@@ -6,7 +6,9 @@ import L from "leaflet"
 import { Media } from "js-media-query"
 
 const CovidMap = ({ country }) => {
-  const [paneStats, setPaneStats] = useState("Hover to Inspect")
+  const [paneStats, setPaneStats] = useState(
+    `Hover over a state to inspect`
+  )
 
   const mapStyle = {
     fillColor: "#dbe2f0",
@@ -38,24 +40,32 @@ const CovidMap = ({ country }) => {
       dashArray: "2",
     }
 
+    let baseText = `
+    <h4 style="font-weight: bold; font-size: 13px; color: #777">Confirmed Cases by State</h4>
+    `
+
+    let hoverText = `
+    <p>Hover over a state to inspect</p>
+    `
+
     layer.on("mouseout", () => {
       layer.setStyle(legendColor)
-      document.querySelector("#info-pane").innerHTML = "Hover to Inspect"
+      document.querySelector("#info-pane").innerHTML = baseText + hoverText
     })
 
-    let content = `
+    let stateCasesText = `
     <div style="text-align: center">
-    <p><b>${stateName}</b>
+    <p style="font-size: 14px;"><b>${stateName}</b>
     \n
     <p style="font-weight: 300"> Confirmed:
-    <span style="color: orange; font-weight: 500">${confirmedText}</span>
+    <span style="color: orange; font-weight: 600;font-size: 13px;">${confirmedText}</span>
     \n
     <p style="font-weight: 300"> Recovered:
-    <span style="color: green; font-weight: 500">${recoveredText} </span>
+    <span style="color: green; font-weight: 600;font-size: 13px;">${recoveredText} </span>
 
     \n
     <p style="font-weight: 300"> Deaths:
-    <span style="color: red; font-weight: 500">${deathsText}</span>
+    <span style="color: red; font-weight: 600;font-size: 13px;">${deathsText}</span>
 
     </div>
     `
@@ -63,14 +73,14 @@ const CovidMap = ({ country }) => {
     // on mouseover highlight selected state and show that state's info
     layer.on("mouseover", () => {
       layer.setStyle(highlight)
-      document.querySelector("#info-pane").innerHTML = content
+      document.querySelector("#info-pane").innerHTML = baseText + stateCasesText
     })
 
-    layer.on("click", function (e) {
-      document.querySelector("#info-pane").innerHTML = "Hover to Inspect"
+    layer.on("click", () => {
+      document.querySelector("#info-pane").innerHTML = baseText + hoverText
       layer.setStyle(highlight)
     })
-    layer.bindPopup(content)
+    layer.bindPopup(stateCasesText)
   }
 
   function SetResizeListener() {
@@ -122,8 +132,11 @@ const CovidMap = ({ country }) => {
         <GeoJSON style={mapStyle} data={country} onEachFeature={onEachState} />
         <SetResizeListener />
         <SetInitialMapZoom />
-        <div id="info-pane" className="leaflet-bar">
+        <div className="leaflet-top leaflet-right">
+          <div className="leaflet-control leaflet-bar" id="info-pane">
+          <h4 style={{fontWeight: "bold", fontSize: "13px", color: "#777"}}>Confirmed Cases by State</h4>
           {paneStats}
+          </div>
         </div>
       </MapContainer>
     </div>
