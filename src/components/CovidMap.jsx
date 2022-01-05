@@ -41,7 +41,7 @@ const CovidMap = ({ country }) => {
     }
 
     let baseText = `
-    <h4 style="font-weight: bold; font-size: 13px; color: #777">Confirmed Cases by State</h4>
+    <h4 style="font-weight: bold; font-size: 13px; color: #777">Covid Cases by State</h4>
     `
 
     let hoverText = `
@@ -134,7 +134,7 @@ const CovidMap = ({ country }) => {
         <SetInitialMapZoom />
         <div className="leaflet-top leaflet-right">
           <div className="leaflet-control leaflet-bar" id="info-pane">
-          <h4 style={{fontWeight: "bold", fontSize: "13px", color: "#777"}}>Confirmed Cases by State</h4>
+          <h4 style={{fontWeight: "bold", fontSize: "13px", color: "#777"}}>Covid Cases by State</h4>
           {paneStats}
           </div>
         </div>
