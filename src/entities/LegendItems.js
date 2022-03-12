@@ -14,7 +14,7 @@ const legendItems = [
     "white"
   ),
   new LegendItem(
-    "250,000 - 550,000",
+    "250,000 - 500,000",
     "#4565a1",
     (cases) => cases > 250_000 && cases <= 500_000,
     "white"
