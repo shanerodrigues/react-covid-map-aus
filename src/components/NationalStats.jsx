@@ -14,27 +14,11 @@ const NationalStats = (data) => {
       return (
         <span className="difference">
           +<span id="new-confirmed">{numberWithCommas(difference)}</span> cases
-          in the past day{" "}
+          in the past week{" "}
         </span>
       )
     } else {
-      return <span className="difference">No new cases in the past day</span>
-    }
-  }
-  const RecoveredStats = () => {
-    let difference = Number(day.recovered) - Number(dayBefore.recovered)
-
-    if (difference > 0) {
-      return (
-        <span className="difference">
-          +<span id="new-recovered">{numberWithCommas(difference)}</span>{" "}
-          recoveries in the past day{" "}
-        </span>
-      )
-    } else {
-      return (
-        <span className="difference">No new recoveries in the past day</span>
-      )
+      return <span className="difference">No new cases in the past week</span>
     }
   }
   const DeathsStats = () => {
@@ -43,11 +27,11 @@ const NationalStats = (data) => {
       return (
         <span className="difference">
           +<span id="new-deaths">{numberWithCommas(difference)}</span> deaths in
-          the past day{" "}
+          the past week{" "}
         </span>
       )
     } else {
-      return <span className="difference">No new deaths in the past day</span>
+      return <span className="difference">No new deaths in the past week</span>
     }
   }
   return (
@@ -59,15 +43,6 @@ const NationalStats = (data) => {
         <span id="confirmed">{numberWithCommas(day.confirmed)}</span>
         <div id="new-confirmed-box">
           <ConfirmedStats />
-        </div>
-      </div>
-      <div id="recovered-card">
-        <span>
-          <b>Recovered</b>
-        </span>
-        <span id="recovered">{numberWithCommas(day.recovered)}</span>
-        <div id="new-recovered-box">
-          <RecoveredStats />
         </div>
       </div>
       <div id="deaths-card">

@@ -6,9 +6,7 @@ import L from "leaflet"
 import { Media } from "js-media-query"
 
 const CovidMap = ({ country }) => {
-  const [paneStats, setPaneStats] = useState(
-    `Hover over a state to inspect`
-  )
+  const [paneStats, setPaneStats] = useState(`Hover over a state to inspect`)
 
   const mapStyle = {
     fillColor: "#dbe2f0",
@@ -59,10 +57,6 @@ const CovidMap = ({ country }) => {
     \n
     <p style="font-weight: 300"> Confirmed:
     <span style="color: orange; font-weight: 600;font-size: 13px;">${confirmedText}</span>
-    \n
-    <p style="font-weight: 300"> Recovered:
-    <span style="color: green; font-weight: 600;font-size: 13px;">${recoveredText} </span>
-
     \n
     <p style="font-weight: 300"> Deaths:
     <span style="color: red; font-weight: 600;font-size: 13px;">${deathsText}</span>
@@ -134,8 +128,10 @@ const CovidMap = ({ country }) => {
         <SetInitialMapZoom />
         <div className="leaflet-top leaflet-right">
           <div className="leaflet-control leaflet-bar" id="info-pane">
-          <h4 style={{fontWeight: "bold", fontSize: "13px", color: "#777"}}>Covid Cases by State</h4>
-          {paneStats}
+            <h4 style={{ fontWeight: "bold", fontSize: "13px", color: "#777" }}>
+              Covid Cases by State
+            </h4>
+            {paneStats}
           </div>
         </div>
       </MapContainer>
