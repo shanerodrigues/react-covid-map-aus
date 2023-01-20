@@ -2,7 +2,7 @@
 
 ![Covid React Map Demo](./public/demo/react-map.gif)
 
-This app provides an overview of COVID 19 Statistics for Australia regarding the number of confirmed and recovered cases as well as deaths for both Australia as a whole and for each individual state.
+This app provides an overview of COVID 19 Statistics for Australia showing the number of confirmed cases and deaths for both Australia as a whole and for each individual state, updated weekly as reported by states and territories.
 
 https://shanerodrigues.github.io/react-covid-map-aus/
 
@@ -84,3 +84,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
